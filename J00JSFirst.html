@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J00JSFirst.html</title>
+
+    <script>
+        var number; // 변수를 선언
+        alert('number=' + number);
+        // 변수 선언후 초기값을 입력하지 않으면 undefined가 된다.
+        if(number==undefined){
+            alert("타입이 정의되지 않음");
+        }else{
+            alert("타입이 정의됨");
+        }
+        number = 10; // 숫자로 초기화
+        // 콘솔에서 출력. F12를 눌러 개발자모드에서 확인
+        console.log("number", number);
+        if(number==undefined){
+            console.log("타입이 정의되지 않음");
+        }else{
+            console.log("타입이 정의됨", typeof(number)); // number타입으로 출력됨.
+        }
+
+    </script>
+</head>
+<body>
+    <script>
+        alert('script태그는 body영역에 쓸수도 있습니다.');
+        number= 99;
+        console.log("개발자 도구의 console에서 확인하세요", number)
+    </script>
+    <h2>자바스크립트(Javascript) 첫번째 예제</h2>
+</body>
+</html>
