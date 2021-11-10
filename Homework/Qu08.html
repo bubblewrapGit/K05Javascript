@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qu08.html</title>
+
+    <script>
+        var num = prompt("숫자를 입력하세요", "입력하세요");
+        var originNum = num;
+        var lastNum = num % 10; //숫자의 마지막자리 구함
+        var count = num.length - 1;
+        // 숫자의 첫번째자리 구하기 위한 while문
+        while(1){
+            for(var i=0; i < count; i++){
+                num = Math.floor(num / 10); // Math.floor(5678/10) = 567
+            }
+            break;
+        }
+        document.write("<h2>숫자의 첫째자리와 마지막자리가 같은지 비교</h2>");
+        document.write("<hr>");
+        document.write(originNum + " => ");
+        if(num == lastNum) document.write("처음과 끝이 같음")
+        else  document.write("처음과 끝이 다름");
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
