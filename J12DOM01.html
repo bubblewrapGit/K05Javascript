@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J12DOM01.html</title>
+</head>
+<body>
+    <script>
+        // 영문값을 받아서 한글로 변환 후 반환
+        var getString = function(param){
+            switch (param){
+                case "POL": return "정치";
+                case "ECO": return "경제";
+                case "ENT": return "연예";
+            default : return "뭔지모름";
+            }
+        }
+
+        function fnGetElementsByTag(){
+            // HTML문서에 있는 모든 input태그를 얻어와서 배열변수에 저장한다.
+            var inputs = document.getElementsByTagName("input");
+            var checkString = "", inputString;
+            // input태그의 갯수만큼 반복
+            for(var i=0; i<inputs.length; i++){
+                // input태그가 체크박스이면서 체크된 상태인지 확인한다.
+                if(inputs[i].type=="checkbox"&&inputs[i].checked==true){
+                    // 선택한 체크박스의 value값을 읽어와서 한글로 변환 후 문자열로 연결한다.
+                    checkString += getString(inputs[i].value)+" ";
+                    
+                    // 얻어온 요소의 속성을 변경할 수 있다. checkbox를 button으로 변경한다.
+                    inputs[i].type = "button";
+                    inputs[i].value = "동적버튼변경";
+                }
+                // type속성이 text이면서 name속성이 txt인지 확인한다.
+                if(inputs[i].type=="text" && inputs[i].name=="txt"){
+                    inputString = inputs[i].value;
+                }
+            }
+            alert("선택한값 : " + checkString + ", 입력한값 : " + inputString);
+        }
+        
+        function fnGetDomain(){
+            // HTML문서의 a태그를 얻어와서 배열 변수에 저장한다.
+            var a_tags = document.getElementsByTagName("a");
+            for(var i=0; i<a_tags.length; i++){
+                /*
+                해당 DOM요소의 href속성을 대문자로 변경한 후 WWW라는 문자열이
+                포함되었는지 확인하여 경고창을 띄워준다.
+                이처럼 여러개의 함수를 점으로 연결해서 호출하는 기법을 '메서드체인'이라고 표현한다.
+                */
+                if(a_tags[i].href.toUpperCase().indexOf("WWW") != -1){
+                    alert(a_tags[i].href);
+                }
+            }
+        }
+    </script>
+
+    <h2>DOM객체 사용하기</h2>
+
+    <h3>태그명으로 객체얻기1</h3>
+    <!-- 체크박스 : 이름은 동일하고 값만 서로 다르다. 선택한 값만 서버로 전송된다. -->
+    <input type="checkbox" name="inter" value="POL" checked>정치
+    <input type="checkbox" name="inter" value="ECO">경제
+    <input type="checkbox" name="inter" value="ENT" checked>연예
+    <!-- 텍스트박스 : 사용자가 입력한 값이 서버로 전송된다. -->
+    <input type="text" name="txt">
+    <!-- 버튼 : 눌럿을때 JS의 함수를 호출한다. -->
+    <input type="button" value="태그명으로 DOM객체 얻기" onclick="fnGetElementsByTag();">
+
+    <h2>태그명으로 객체얻기2</h2>
+    <!-- ul>(li>a)*3 -->
+    <ul>
+        <li><a href="http://www.naver.com">네이버</a></li>
+        <li><a href="http://daum.net">다음</a></li>
+        <li><a href="http://www.nate.com">네이트</a></li>
+    </ul>
+    <button onclick="fnGetDomain();">도메인 얻어오기</button>
+</body>
+</html>

@@ -10,6 +10,9 @@
         document.write("<h2>난수10개 생성</h2><hr>");
         var plots = [];
         for(var i=0; i<10; i++){
+            // Math.random()은 0~1사이의 난수를 생성
+            // 생성된 난수에 100을 곱하면 0~99까지 나온다
+            // 1~100까지를 구하려면 +1
             plots[i]=Math.floor(Math.random() * 100 + 1);
         }
         document.write(plots+"<br><hr>");
@@ -21,6 +24,19 @@
         }
         document.write("가장큰수는 : " + plots[0]);
     </script>
+
+<!--
+    <script>
+        // 최대값 찾아내기
+        var maxNum = plots[0]; // 배열의 0번 인덱스를 기준값으로 설정
+        for(var i=1; i<10; i++){ // 기준값의 인덱스가 0이기 때문에 1부터 비교 시작
+            if(maxNum < plots[i]){
+                // 기준값보다 큰값이 발견되면 값을 변경한다.
+                maxNum = plots[i];
+            }
+        }
+    </script>
+-->
 </head>
 <body>
     

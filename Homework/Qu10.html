@@ -19,7 +19,7 @@
             document.write(array[i] + " ");
         }
         
-        document.write("<hr>역순으로 재정렬된 배열<br>")
+        document.write("<hr>역순으로 재정렬된 배열1<br>")
         for(var i=0; i<array.length-1; i++){
             for(var j=0; j<array.length-1; j++){
                 if(parseInt(array[j]) < parseInt(array[j+1])){
@@ -28,7 +28,14 @@
                     array[j+1] = temp;
                 }
             }
+        }        
+        for(var i=0; i<array.length; i++){
+            document.write(array[i] + " ");
         }
+
+        document.write("<hr>역순으로 재정렬된 배열2<br>")
+        // var t = array.reverse(); // .reverse();를 통해 배열의 값들을 역순으로 정렬할 수 있다.
+        // 허나 지금은 상단 코드에서 이미 역순이여서 다시 돌린다면 오름차순으로 정렬된다.
         for(var i=0; i<array.length; i++){
             document.write(array[i] + " ");
         }
