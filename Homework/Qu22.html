@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qu22.html</title>
+</head>
+<body>
+    <h2>div 태그에 시계 만들기</h2>
+    <p>시계를 클릭하면 시계가 멈추고 다시 클릭하면 가기 시작한다.</p>
+    <hr>
+    <button type="button" onclick="timeControl()"></button>
+    <style>
+        button{
+            width:300px;
+            height:50px;
+            font-size: 1.5em;
+            border: 2px solid rgb(19, 86, 173); 
+            background: rgba(225, 240, 246, 0.5);
+            color:rgb(19, 86, 173);
+            font-weight: bold;
+        }
+        button:hover{
+            cursor: pointer;
+            border: 2px solid rgb(19, 86, 173); 
+            background: rgba(225, 240, 246, 1);
+            color:rgb(19, 86, 173);
+        }
+    </style>
+    <script>
+        var flag = 0;
+        var timeBtn = document.getElementsByTagName("button")[0];
+        
+        function setTime(){
+            var date = new Date();
+            var nowTime = date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds();
+
+            var aMpM;
+            if(date.getHours() <= 12){
+                aMpM = "AM";
+            }else{
+                aMpM = "PM";
+            }
+            timeBtn.innerHTML = aMpM + " " + nowTime;
+        }
+        
+        var time = setInterval(setTime, 1000);
+        
+        function timeControl(){
+            console.log(flag);
+            if(flag == 0){
+                clearInterval(time);
+                flag = 1;
+            }else{
+                time = setInterval(setTime, 1000);
+                flag = 0;
+            }
+        }
+    </script>
+</body>
+</html>

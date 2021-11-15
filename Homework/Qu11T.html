@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qu11.html</title>
+</head>
+<body>
+    <div id="AllWrap">
+        <h2>오전이면 lightskyblue, 오후면 orange</h2>
+        <hr>
+        <script>
+            var date = new Date();
+            if(date.getHours() < 12){
+                // 오전일떄
+                document.getElementById("AllWrap").style.backgroundColor = "lightskyblue";
+                document.body.style.backgroundColor = "lightskyblue";
+            }else{
+                // 오후일때
+                document.getElementById("AllWrap").style.backgroundColor = "orange";
+                document.body.style.backgroundColor = "orange";
+            }
+        </script>
+    </div>
+</body>
+</html>

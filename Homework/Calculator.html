@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+
+    <link rel="stylesheet" type="text/css" href="./style/style_calc.css"> 
+    <link rel="stylesheet" type="text/css" href="./style/reset.css"> 
+
+    <script>
+        var lcdDisplay;
+        window.onload = function(){
+            lcdDisplay = document.getElementsByClassName("lcd_display")[0];
+
+        }
+        function cancle(){
+            var str = '0';
+            lcdDisplay.innerHTML = str;
+        };
+
+        function backSpace(){
+            lcdDisplay.innerHTML = lcdDisplay.innerHTML.slice(0, -1);
+            if(lcdDisplay.innerHTML == ''){
+                lcdDisplay.innerHTML = "0";
+            }
+        };
+
+        function inputValue(key){
+            var keyValue = key.value;
+            if(lcdDisplay.innerHTML == "0"){
+                lcdDisplay.innerHTML = "";
+                lcdDisplay.innerHTML += keyValue;
+            }else{
+                lcdDisplay.innerHTML += keyValue;
+            }
+        };
+
+        function totalValue(){
+            var totalValue = eval(lcdDisplay.innerHTML);
+            lcdDisplay.innerHTML = totalValue;
+        }
+    </script>
+</head>
+<body>
+    <!-- 
+        레이아웃 : table
+        버튼 : input & button
+        LCD : div
+    -->
+    <div id="body-wrap">
+        <header></header>
+
+        <div id="container">
+            <div class="con-wrap">
+                <table class="calc">
+                    <tbody>
+                        <tr class="lcd">
+                            <td colspan="4" rowspan="2">
+                                <div class="lcd_display_wrap">
+                                    <div class="lcd_display">0</div>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                        </tr>
+
+                        <tr class="middle">
+                            <td colspan="2">
+                                <button type="button" class="btn_st_gray" name="backspace" value="del" onclick="backSpace();">BackSpace</button>
+                            </td>
+                            <td colspan="2">
+                                <button type="button" class="btn_st_gray" name="cancle" value="" onclick="cancle();">C</button>
+                            </td>
+                        </tr>
+
+                        <tr class="key">
+                            <td>
+                                <button type="button" class="btn_st_black" name="num" value="1" onclick="inputValue(this);">1</button>
+                            </td>
+                            <td>
+                                <button type="button" class="btn_st_black" name="num" value="2" onclick="inputValue(this);">2</button>
+                            </td>
+                            <td>
+                                <button type="button" class="btn_st_black" name="num" value="3" onclick="inputValue(this);">3</button>
+                            </td>
+                            <td>
+                                <button type="button" class="btn_st_orange" name="operator" value="/" onclick="inputValue(this);">/</button>
+                            </td>
+                        </tr>
+
+                        <tr class="key">
+                            <td>
+                                <button type="button" class="btn_st_black" name="num" value="4" onclick="inputValue(this);">4</button>
+                            </td>
+                            <td>
+                                <button type="button" class="btn_st_black" name="num" value="5" onclick="inputValue(this);">5</button>
+                            </td>
+                            <td>
+                                <button type="button" class="btn_st_black" name="num" value="6" onclick="inputValue(this);">6</button>
+                            </td>
+                            <td>
+                                <button type="button" class="btn_st_orange" name="operator" value="*" onclick="inputValue(this);">x</button>
+                            </td>
+                        </tr>
+
+                        <tr class="key">
+                            <td>
+                                <button type="button" class="btn_st_black" name="num" value="7" onclick="inputValue(this);">7</button>
+                            </td>
+                            <td>
+                                <button type="button" class="btn_st_black" name="num" value="8" onclick="inputValue(this);">8</button>
+                            </td>
+                            <td>
+                                <button type="button" class="btn_st_black" name="num" value="9" onclick="inputValue(this);">9</button>
+                            </td>
+                            <td>
+                                <button type="button" class="btn_st_orange" name="operator" value="+" onclick="inputValue(this);">+</button>
+                            </td>
+                        </tr>
+
+                        <tr class="key">
+                            <td>
+                                <button type="button" class="btn_st_black" name="num" value="=" onclick="totalValue();">=</button>
+                            </td>
+                            <td>
+                                <button type="button" class="btn_st_black" name="num" value="0" onclick="inputValue(this);">0</button>
+                            </td>
+                            <td>
+                                <button type="button" class="btn_st_black" name="num" value="." onclick="inputValue(this);">.</button>
+                            </td>
+                            <td>
+                                <button type="button" class="btn_st_orange" name="operator" value="-" onclick="inputValue(this);">-</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <footer id="footer"></footer>
+    </div>
+</body>
+</html>

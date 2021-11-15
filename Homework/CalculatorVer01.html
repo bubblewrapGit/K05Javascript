@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CalculatorVer01.html</title>
+
+    <style>
+        table{
+            border:1px solid #c7c7c7;
+            background-color: #dddddd;
+            border-radius: 10px;
+            border-spacing: 3px;
+        }
+        button, input{
+            border: 1px solid #dddddd;
+            border-radius: 10px;
+            font-size: 1.5em;
+            height: 50px;
+            color: #ffffff;
+            cursor: pointer;
+        }
+        /* 백스페이스, 클리어버튼 */
+        .key_type1{width: 204px; background-color: #7b7b7b;}
+        /* 숫자 */
+        .key_type2{width: 100px; background-color: #373737;}
+        /* 연산기호 */
+        .key_type3{width: 100px; background-color: #fa960a;}
+        /* LCD 창 */
+        #lcd{
+            background-color: #70c738;
+            text-align: right;
+            border-radius: 10px;
+            height: 60px;
+            padding: 7px;
+            font-size: 2.5em;
+            font-weight: bold;
+        }
+    </style>
+    
+    <script>
+        /*
+        만약 lcd창을 전역변수로 사용하고 싶다면 아래와 같이 load 이벤트를 이용하여
+        문서의 로드가 끝난 후 DOM을 얻어와야 한다.
+       
+        var lcd;
+        window.onload = function(){
+            lcd = document.getElementById("lcd");
+        }
+         */
+        
+        function inputNum(num){
+            // lcd창의 DOM객체를 얻어온다.
+            var lcd = document.getElementById("lcd");
+
+            //만약 클리어 버튼이 눌러진다면 숫자를 0으로 만들어준다.
+            if(num=='clear'){
+                // lcd.innerHTML = '0';
+                // return; // 즉시 함수를 종료한다.
+
+                clear();
+                return; // 만약 실행할 문장이 남아있다면 return을 걸어야한다.
+            }
+            // 초기상태에서는 0을 지워줘야 한다.
+            if(lcd.innerHTML=='0'){
+                // innerHTML속성은 시작태그와 종료태그 사이의 컨텐츠를 제어하는 속성이다.
+                lcd.innerHTML = '';
+            }
+            if(num=='='){
+                // 만약 이퀄을 눌렀다면 계산의 결과를 출력해야한다.
+                calculate();
+            }else{
+                // 초기상태가 아니라면 기존의 숫자에 새로운 숫자를 연결해준다.
+                lcd.innerHTML += num;
+            }
+        }
+        
+        function clear(){
+            var lcd = document.getElementById("lcd");
+            lcd.innerHTML = '0';
+        }
+
+        // lcd창에 입력된 계산식의 결과를 출력
+        var calculate = function(){
+            var lcd = document.getElementById("lcd");
+            // eval()함수를 통해 문자열로 전달된 계산식을 계산한다.
+            var result = eval(lcd.innerHTML);
+            lcd.innerHTML = Math.floor(result);
+        }
+
+        // 백스페이스 : 숫자 하나 지우기
+        function backSpace(){
+            // LCD창을 DOM으로 얻어온다.
+            var lcd = document.getElementById("lcd");
+            // 입력된 숫자의 길이를 구한다.
+            var strLen = lcd.innerHTML.length;
+            // console.log("길이", strLen);
+            // lcd.innerHTML = lcd.innerHTML.substr(0,3);
+            /*
+            가장 오른쪽에 있는 숫자 하나를 잘라낸다.
+            substr(시작인덱스, 길이) => 문자열의 길이 앞까지를 잘라낸다.
+            */
+           lcd.innerHTML = lcd.innerHTML.substr(0,(strLen-1));
+           // LCD창의 모든 숫자가 지워지면 0으로 채워준다.
+            if(lcd.innerHTML == ''){
+                lcd.innerHTML = '0';
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>계산기Ved0.1</h2>
+    <!-- table>tr*6>td*4 -->
+    <table>
+        <tr>
+            <td colspan="4">
+                <!-- 숫자가 길어져서 lcd창을 넘어가는 경우 레이아웃 유지를 위해 overflow속성을 부여한다.
+                     단, width속성을 지정해야한다. -->
+                <div style="overflow: hidden; width:410px;">
+                    <div id="lcd">0</div>
+                </div>
+            </td>
+        </tr>
+        <!-- backspace, clear버튼 -->
+        <tr>
+            <td colspan="2" >
+                <button type="button" class="key_type1" onclick="backSpace();">Backspace</button>
+            </td>
+            <td colspan="2">
+                <button type="button" class="key_type1" onclick="inputNum('clear');">Clear</button>
+            </td>
+        </tr>
+
+        <tr>
+            <td><input type="button" value="1" class="key_type2" onclick="inputNum('1');"></td>
+            <td><input type="button" value="2" class="key_type2" onclick="inputNum('2');"></td>
+            <td><input type="button" value="3" class="key_type2" onclick="inputNum('3');"></td>
+            <td><input type="button" value="+" class="key_type3" onclick="inputNum('+');"></td>
+        </tr>
+        <tr>
+            <td><input type="button" value="4" class="key_type2" onclick="inputNum('4');"></td>
+            <td><input type="button" value="5" class="key_type2" onclick="inputNum('5');"></td>
+            <td><input type="button" value="6" class="key_type2" onclick="inputNum('6');"></td>
+            <td><input type="button" value="-" class="key_type3" onclick="inputNum('-');"></td>
+        </tr>
+        <tr>
+            <td><input type="button" value="7" class="key_type2" onclick="inputNum('7');"></td>
+            <td><input type="button" value="8" class="key_type2" onclick="inputNum('8');"></td>
+            <td><input type="button" value="9" class="key_type2" onclick="inputNum('9');"></td>
+            <td><input type="button" value="×" class="key_type3" onclick="inputNum('*');"></td>
+        </tr>
+        <tr>
+            <td><input type="button" value="=" class="key_type2" onclick="inputNum('=');"></td>
+            <td><input type="button" value="0" class="key_type2" onclick="inputNum('0');"></td>
+            <td><input type="button" value="." class="key_type2" onclick="inputNum('.');"></td>
+            <td><input type="button" value="÷" class="key_type3" onclick="inputNum('/');"></td>
+        </tr>
+    </table>
+</body>
+</html>

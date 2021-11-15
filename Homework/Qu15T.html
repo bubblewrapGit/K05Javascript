@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qu15.html</title>
+
+    <style>
+        div{
+            width: 150px; height: 80px; padding-left: 10px;
+            float: left; line-height: 80px;
+            font-size: 1em;
+        }
+    </style>
+
+    <script>
+        /*
+        해당 윈도우(브라우저)의 로드가 완료된 후 무기명 함수를 실행하는 방식으로,
+        자바스크립트는 인터프리터 방식임으로 DOM과의 연동을 위해 자주 사용되는 방식이다.
+        */
+
+        window.onload = function(){
+            var str='';
+            for(var i=0; i<16; i++){
+                /*
+                rgb에 해당하는 색을 구하기 위해 난수를 생성한다.
+                256으로 나누면 0~255까지의 난수를 구할 수 있다.
+                단, 소수점이 남게됨으로 소수점 아래는 버림처리 한다.
+                */
+                var r = Math.floor(Math.random()*256);
+                var g = Math.floor(Math.random()*256);
+                var b = Math.floor(Math.random()*256);
+                console.log(r,g,b);
+                str += '<div style="background-color: rgb('+r+', '+g+', '+b+');">rgb('+r+', '+g+', '+b+')</div>';
+                // document.write(str);
+                document.getElementById("showPosition").innerHTML = str;
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>16개의 랜덤한 색 만들기</h2>
+    <hr>
+    <span id="showPosition"></span>
+    <!-- <div style="background-color: rgb(148,277,90);">rgb(148,277,90)</div> -->
+    <!-- <div style="background-color: rgb(109,153,235);">rgb(109,153,235)</div> -->
+</body>
+</html>

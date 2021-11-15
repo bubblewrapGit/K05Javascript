@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qu13.html</title>
+
+    <script>
+        // ki_story.html?mode=view&tname=interview&idx=520&page=1&keyfield=name&keystring=홍길동
+        var queryString = prompt("&구분자가 있는 문자열입력", "ki_story.html?mode=view&tname=interview&idx=520&page=1&keyfield=name&keystring=홍길동");
+        var strArr = queryString.split("&");
+        for(var i=0; i<strArr.length; i++){
+            document.write(strArr[i] + "<br>");
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

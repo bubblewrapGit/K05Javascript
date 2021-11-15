@@ -1,0 +1,251 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap");
+html {
+  font-size: 16px;
+  font-family: 'Noto Sans KR', sans-serif;
+  color: #333333;
+  background: #f8f9fa;
+  width: 100%;
+  height: 100%;
+}
+
+#container {
+  width: 794px;
+  margin: 80px auto;
+  border: 1px solid #d9d9d9;
+  background: #fff;
+}
+
+.essential {
+  padding: 0 15px 15px 15px;
+}
+
+.essential::before {
+  content: "*";
+  display: inline-block;
+  color: red;
+  position: absolute;
+  margin-left: -15px;
+  margin-top: 4px;
+}
+
+.text_guid {
+  color: #888888;
+  font-weight: 300;
+  font-size: 1em;
+}
+
+.btn_st_01 {
+  height: 25px;
+  background: #464646;
+  color: #fff;
+  padding: 0 10px;
+  border-radius: 2px;
+  font-weight: 500;
+}
+
+.btn_st_basic {
+  margin: 0 auto;
+  width: 120px;
+  height: 35px;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 1em;
+  font-weight: 700;
+  background: #464646;
+}
+
+.btn_st_submit {
+  background: #bd252a;
+}
+
+.area_wrap {
+  padding: 20px;
+}
+
+.area_wrap > p.essential {
+  text-align: right;
+  color: #75746d;
+}
+
+.area_wrap .login_form tr {
+  border: 1px solid #c0c0c0;
+}
+
+.area_wrap .login_form .table_title {
+  font-weight: 500;
+  background: #e4e6e9;
+  border-right: 1px solid #c0c0c0;
+  text-align: left;
+  padding: 15px 40px;
+}
+
+.area_wrap .login_form .table_content .table_c_wrap {
+  padding: 8px 10px;
+}
+
+.area_wrap .login_form .table_content .table_c_wrap:not(:nth-of-type(1)) {
+  border-top: 1px solid #c0c0c0;
+}
+
+.area_wrap .login_form .table_content input {
+  border: 1px solid #c0c0c0;
+  height: 30px;
+  border-radius: 2px;
+  padding: 8px;
+}
+
+.area_wrap .login_form .table_content input[type=radio] {
+  width: 20px;
+  height: 20px;
+  position: relative;
+  top: 4px;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border-radius: 25px;
+}
+
+.area_wrap .login_form .table_content input[type=radio]:checked {
+  border: 1px solid #26b957;
+}
+
+.area_wrap .login_form .table_content input[type=radio]:checked::after {
+  content: "";
+  width: 12px;
+  height: 12px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -6px;
+  margin-top: -6px;
+  border-radius: 25px;
+  background: #26b957;
+}
+
+.area_wrap .login_form .table_content input:focus {
+  outline: 2px solid #26b957;
+}
+
+.area_wrap .login_form .table_content span {
+  font-size: 0.875em;
+  margin-left: 4px;
+  line-height: 24px;
+}
+
+.area_wrap .login_form .table_content select {
+  width: 100px;
+  height: 30px;
+  border: 1px solid #c0c0c0;
+  border-radius: 2px;
+}
+
+.area_wrap .login_form .table_content select:focus {
+  outline: 2px solid #26b957;
+}
+
+.area_wrap .login_form .table_content .reception {
+  display: inline-block;
+}
+
+.area_wrap .login_form .table_content .reception li {
+  display: inline-block;
+}
+
+.area_wrap .login_form .birth .table_content .table_c_wrap {
+  overflow: hidden;
+}
+
+.area_wrap .login_form .birth .table_content .table_c_wrap ul {
+  float: left;
+}
+
+.area_wrap .login_form .birth .table_content .table_c_wrap ul li {
+  float: left;
+}
+
+.area_wrap .login_form .birth .table_content .table_c_wrap ul.gender {
+  width: 140px;
+  height: 25px;
+}
+
+.area_wrap .login_form .birth .table_content .table_c_wrap ul.gender li {
+  width: 50%;
+  margin-top: -2px;
+}
+
+.area_wrap .login_form .birth .table_content .table_c_wrap ul.birthday {
+  margin-left: 10px;
+}
+
+.area_wrap .login_form .birth .table_content .table_c_wrap ul.birthday li {
+  height: 25px;
+  margin-right: 10px;
+  margin-top: -3px;
+}
+
+.area_wrap .login_form .birth .table_content .table_c_wrap ul.birthday li input {
+  text-align: right;
+}
+
+.area_wrap .login_form .birth .table_content .table_c_wrap ul.birthday li input#year {
+  width: 50px;
+}
+
+.area_wrap .login_form .birth .table_content .table_c_wrap ul.birthday li input#month, .area_wrap .login_form .birth .table_content .table_c_wrap ul.birthday li input#day {
+  width: 40px;
+}
+
+.area_wrap .login_form .birth .table_content .table_c_wrap ul.birthday li span {
+  line-height: 30px;
+}
+
+.area_wrap .login_form .birth .table_content .table_c_wrap > div {
+  float: left;
+}
+
+.area_wrap .login_form .email .table_c_wrap input[type=text] {
+  width: 120px;
+}
+
+.area_wrap .login_form .email .table_c_wrap input[type=radio] {
+  margin-left: 4px;
+}
+
+.area_wrap .login_form .address input#postNum {
+  width: 90px;
+}
+
+.area_wrap .login_form .address input#address {
+  width: 100%;
+}
+
+.area_wrap .login_form .address input#addressPlue {
+  width: 84%;
+}
+
+.area_wrap .login_form .tel input[type=text], .area_wrap .login_form .phone input[type=text] {
+  width: 70px;
+  text-align: center;
+}
+
+.area_wrap .login_form .tel input[type=text]:nth-of-type(1), .area_wrap .login_form .phone input[type=text]:nth-of-type(1) {
+  width: 50px;
+}
+
+.area_wrap .login_form .tel ul li:first-child, .area_wrap .login_form .phone ul li:first-child {
+  margin: 0 20px;
+}
+
+.area_wrap .login_form .interest select, .area_wrap .login_form .root select {
+  width: 50%;
+}
+
+.area_wrap .end {
+  width: 100%;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.area_wrap .end button {
+  margin: 0 10px;
+}

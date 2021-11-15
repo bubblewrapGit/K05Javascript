@@ -68,7 +68,7 @@
                     select의 경우 selected 속성을 사용하여 선택여부를 확인한다.
                     */
                 }else{
-                    obj.options[i].text = "==========";
+                    // obj.options[i].text = "==========";
                 }
             }
         }
@@ -88,7 +88,10 @@
     <script>
         function fnSubmit(){
             // form태그 하위의 텍스트 상자의 DOM을 얻어온다.
-            var txtObj = document.subForm.txt;
+            var txtObj = document.subForm.txt; // 텍스트상자의 name속성으로 접근
+            // var txtObj = document.getElementById("idTxt"); // 텍스트상자의 id속성으로 접근
+        // 위 두가지 방식 모두 사용할 수 있다.
+        
             /*
             텍스트 상자에 아무런 내용이 없는경우 서버로 전송되지 않도록
             false를 반환한다. 반환된 값은 이벤트 핸들러 쪽으로 전달되어 전송이 중지된다.
@@ -118,7 +121,7 @@
             통상적으로 true는 별도로 사용하지 않는다.
      -->
     <form name="subForm" action="http://ikosmo.co.kr" onsubmit="return fnSubmit();">
-        <input type="text" name="txt" value="">
+        <input type="text" name="txt" id="idTxt" value="">
         
         <input type="reset" value="리셋">
 

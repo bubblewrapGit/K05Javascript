@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qu15.html</title>
+
+    <script>
+        var str ='';
+
+        for(var i =0; i < 16; i++){
+            var r = Math.floor(Math.random()*256);
+            var g = Math.floor(Math.random()*256);
+            var b = Math.floor(Math.random()*256);
+
+            console.log(r,g,b);
+
+            str += '<div style="background-color: rgb(' + r + ',' + g + ',' + b+ ');">'+ r + ',' + g + ',' + b+'</div>';
+        }
+
+    </script>
+
+    <style>
+        div{
+            width: 300px; height: 50px; display:inline-block; text-align:center; line-height:50px;font-size: 1.5em;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>16개의 랜덤한 색만들기</h2>
+    <hr>
+    <script>
+        document.write(str);
+    </script>
+</body>
+</html>

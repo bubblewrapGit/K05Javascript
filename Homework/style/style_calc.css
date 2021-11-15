@@ -1,0 +1,142 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap");
+html {
+  font-size: 16px;
+  font-family: 'Noto Sans KR', sans-serif;
+  color: #333333;
+  background: #fff;
+  width: 100%;
+  height: 100%;
+}
+
+#container {
+  width: 425px;
+  margin: 80px auto;
+}
+
+.essential {
+  padding: 0 15px 15px 15px;
+}
+
+.essential::before {
+  content: "*";
+  display: inline-block;
+  color: red;
+  position: absolute;
+  margin-left: -15px;
+  margin-top: 4px;
+}
+
+.text_guid {
+  color: #888888;
+  font-weight: 300;
+  font-size: 1em;
+}
+
+.btn_st_01 {
+  height: 25px;
+  background: #464646;
+  color: #fff;
+  padding: 0 10px;
+  border-radius: 2px;
+  font-weight: 500;
+}
+
+.btn_st_basic {
+  margin: 0 auto;
+  width: 120px;
+  height: 35px;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 1em;
+  font-weight: 700;
+  background: #464646;
+}
+
+.btn_st_submit {
+  background: #bd252a;
+}
+
+.btn_st_gray {
+  width: 100%;
+  height: 50px;
+  background: #7b7b7b;
+}
+
+.btn_st_black {
+  width: 100px;
+  height: 50px;
+  background: #373737;
+}
+
+.btn_st_orange {
+  width: 100px;
+  height: 50px;
+  background: #fa960a;
+}
+
+#container {
+  border-radius: 4px;
+}
+
+.con-wrap {
+  width: 100%;
+  background: #dddddd;
+  border: 1px solid #c7c7c7;
+  border-radius: 4px;
+}
+
+.calc {
+  width: 100%;
+  border-collapse: inherit;
+  border-spacing: 5px;
+}
+
+.calc * {
+  border-radius: 8px;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.calc tbody .lcd {
+  width: 100%;
+  overflow: hidden;
+}
+
+.calc tbody .lcd td {
+  height: 85px;
+}
+
+.calc tbody .lcd .lcd_display_wrap {
+  width: 415px;
+  overflow: hidden;
+  padding: 10px 20px;
+  background: #70c738;
+}
+
+.calc tbody .lcd .lcd_display_wrap .lcd_display {
+  width: 100%;
+  overflow: hidden;
+  text-align: right;
+  color: #373737;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 65px;
+  padding: 0 20px;
+}
+
+.calc tbody .middle {
+  text-align: center;
+}
+
+.calc tbody .key {
+  text-align: center;
+}
+
+.calc tbody .key td {
+  margin-bottom: 10px;
+}
+
+.calc tbody button:hover {
+  opacity: 0.8;
+}

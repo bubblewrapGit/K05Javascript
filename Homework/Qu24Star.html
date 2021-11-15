@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qu24Star.html</title>
+</head>
+<body>
+    <h2>별 문자 출력하기</h2>
+    <hr>
+    
+    <script>
+        function printStar(){
+            while(1){
+                var inputNum = prompt("정수를 입력하세요", "입력창");
+                
+                if(inputNum <= 0 ){
+                    alert("입력오류입니다.");
+                }else if(isNaN(inputNum)){
+                    alert("입력오류입니다.");
+                }else{
+                    for(var i=1; i<=inputNum; i++){
+                        for(var j=1; j<=inputNum; j++){
+                            if(i >= j){
+                                document.write("*");
+                            }
+                        }
+                        document.write("<br>");
+                    }
+                    for(var i=1; i<=inputNum; i++){
+                        for(var j=1; j<=inputNum; j++){
+                            if(i < j){
+                                document.write("*");
+                            }
+                        }
+                        document.write("<br>");
+                    }
+                    break;
+                }
+            }
+        };
+        printStar();
+    </script>
+</body>
+</html>

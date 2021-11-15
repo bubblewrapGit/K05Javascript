@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qu21.html</title>
+</head>
+<body>
+    <h2>라디오 버튼을 클릭하면 이미지를 출력합니다.</h2>
+    <hr>
+    <input type="radio" name="fruit" onclick="imgView(1);">바나나
+    <input type="radio" name="fruit" onclick="imgView(2);">망고
+    <input type="radio" name="fruit" onclick="imgView(3);">사과
+    <img src="" style="display: block;">
+
+    <script>
+        var img = document.getElementsByTagName("img")[0];
+        function imgView(num){
+            if(num == 1){
+                img.src = "./images/banana.png";
+            }else if(num == 2){
+                img.src = "./images/mango.png";
+            }else if(num == 3){
+                img.src = "./images/apple.png";
+            }
+        }
+    </script>
+
+</body>
+</html>

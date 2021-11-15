@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qu23.html</title>
+</head>
+<body>
+    <h2>산수 문제를 풀어 봅시다.</h2>
+    <p>수식을 계산하여 답을 입력하고 채점 버튼을 누르세요</p>
+    <hr>
+    <ul>
+        <li><p class="quiz">5*8</p><input type="text" value=""></li>
+        <li><p class="quiz">7+5*3</p><input type="text" value=""></li>
+        <li><p class="quiz">23*2</p><input type="text" value=""></li>
+        <li><p class="quiz">35-7</p><input type="text" value=""></li>
+        <li><button type="button" onclick="result();">채점</button><span id="result">0</span></li>
+    </ul>
+    <style>
+        body{padding:25px;}
+        *{margin:0; padding: 0;}
+        hr{ margin: 20px 0;}
+        ul{overflow: hidden; clear: both; width: 300px; border-bottom: 1px solid #d9d9d9;}
+        li{list-style: none; overflow: hidden; border: 1px solid #d9d9d9; border-bottom: 0; padding:10px;}
+        li:last-of-type{background: rgb(186, 192, 209);}
+        ul p{float: left; width: 80px; line-height: 25px;}
+        input{float: left; height: 25px; line-height: 25px; text-indent: 10px;}
+        button{width: 70px; border:2px solid rgb(92 125 167); color:rgb(19, 86, 173); font-weight: bold; background: rgba(236, 241, 243, 0.9); padding:10px;}
+        button:hover{background: rgb(255, 255, 255); cursor: pointer;}
+        span{width: 173px; text-align: center; display: inline-block; font-size: 1.5em; font-weight: bold; line-height: 42px; height: 42px;}
+    </style>
+
+<script>
+    var quiz = document.getElementsByClassName("quiz");
+    var val = document.getElementsByTagName("input");
+    var quiz1 = quiz[0].innerHTML;
+    var quiz2 = quiz[1].innerHTML;
+    var quiz3 = quiz[2].innerHTML;
+    var quiz4 = quiz[3].innerHTML;
+        function result(){
+            var count=0;
+            quiz[0].innerHTML = quiz1;
+            quiz[1].innerHTML = quiz2;
+            quiz[2].innerHTML = quiz3;
+            quiz[3].innerHTML = quiz4;
+            for(var i=0; i<4; i++){
+                if(val[i].value == eval(quiz[i].innerHTML)){
+                    count++;
+                }else{
+                    quiz[i].innerHTML = "<del>"+quiz[i].innerHTML+"</del>";
+                }
+            }
+            document.getElementById("result").innerHTML = count;
+        };
+
+    </script>
+</body>
+</html>
