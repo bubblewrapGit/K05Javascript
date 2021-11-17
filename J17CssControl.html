@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J17CssControl.html</title>
+
+    <script>
+        // 전역변수 : 기사부분의 DOM객체와 폰트사이즈 저장
+        var pTag, pSize;
+
+        window.onload = function(){
+            // 기사가 있는 p태그의 DOM을 얻어옴
+            pTag = document.getElementById("article");
+            // 현재 설정된 폰트 사이즈를 얻어옴(별도의 사아즈 지정이 없다면 디폴트 16px)
+            pSize = parseInt(pTag.style.fontSize);
+        }
+        
+        function fnArticle(flag){
+            /*
+            JS에서 CSS속성 컨트롤
+                : DOM.style.CSS속성 = "속성값";
+                단, 이때 CSS 속성에 하이픈이 들어간다면 제거 후 첫글자를 대문자로 기술한다.
+                또한 크기를 설정할때는 반드시 px과 같은 단위를 기술해야 한다.
+            */
+            switch (flag) {
+                case "+": // 폰트크기
+                    pSize += 10;
+                    pTag.style.fontSize = pSize + "px";
+                    break;
+                case "-":
+                    pSize -= 10;
+                    pTag.style.fontSize = pSize + "px";
+                    break;
+                case "R": // 폰트색상
+                    pTag.style.color = "red";
+                    break;
+                case "G":
+                    pTag.style.color = "green";
+                    break;
+                case "B":
+                    pTag.style.color = "blue";
+                    break;
+                case "Bo": // 폰트굵기
+                    pTag.style.fontWeight = "bold";
+                    break;
+                case "No":
+                    pTag.style.fontWeight = "normal";
+                    break;
+                case "Ce": // 서체정렬
+                    pTag.style.textAlign = "center";
+                    break;
+                case "B_red":
+                    pTag.style.backgroundColor = "red";
+                    break;
+                case "B_silver":
+                    pTag.style.backgroundColor = "silver";
+                    break;
+                case "B_white":
+                    pTag.style.backgroundColor = "white";
+                    break;
+            
+                default:
+                    pTag.style.color = "black";
+            }
+        }
+
+        /*
+        연습문제] 글꼴바꾸기 버튼을 계속 누를때마다 아래 5가지 폰트가
+        토글되어 적용될 수 있도록 함수를 정의하시오.
+        글꼴 : Verdana, 굴림체, 휴먼옛체, 궁서, Impact
+        */
+
+        //  내 코드(작동 됨)
+    //    var count = 0;
+    //    function setFont(){
+    //         var fontToggle = ['Verdana', '굴림체', '휴먼옛체', '궁서', 'Impact'];
+    //         count++;
+    //         if(count < fontToggle.length){
+    //             document.getElementsByTagName("body")[0].style.fontFamily = fontToggle[count];
+    //         }else{
+    //             document.getElementsByTagName("body")[0].style.fontFamily = fontToggle[0];
+    //             count = 0;
+    //         }
+    //     }
+        var fontToggle =0; // 폰트 토글을 위한 전역변수
+        function setFont(){
+            // 문제에서 주어진 폰트를 배열로 선언
+            var fontArray = ['Verdana', '굴림체', '휴먼옛체', '궁서', 'Impact'];
+            // 정수 5로 나누면 나머지는 0~4까지 생성된다. 배열의 인덱스와 일치함
+            var idx = fontToggle % 5;   
+            // 스타일 지정
+            pTag.style.fontFamily = fontArray[idx];
+            // 함수 호출마다 증가
+            fontToggle++;
+        };
+    </script>
+</head>
+<body>
+    <h2>자바스크립트로 CSS제어하기</h2>
+    <input type="button" value="글꼴바꾸기" onclick="setFont();">
+    <fieldset>
+        <legend>신문기사</legend>
+        <button onclick="fnArticle('+');">+</button>
+        <button onclick="fnArticle('-');">-</button>
+        <button onclick="fnArticle('R');">Red</button>
+        <button onclick="fnArticle('G');">Green</button>
+        <button onclick="fnArticle('B');">Blue</button>
+        <button onclick="fnArticle('');">Black</button>
+        <button onclick="fnArticle('Bo');">볼드체</button>
+        <button onclick="fnArticle('No');">보통체</button>
+        <button onclick="fnArticle('Ce');">가운데정렬</button>
+        <button onclick="fnArticle('Le');">좌측정렬</button>
+        <button onclick="fnArticle('B_red');">배경색(red)</button>
+        <button onclick="fnArticle('B_silver');">배경색(silver)</button>
+        <button onclick="fnArticle('B_white');">배경색(white</button>
+    </fieldset>
+    <p style="font-size:12px;" id="article">
+        오늘의 뉴스<br>
+        16일 한국을 찾은 팀 스위니 에픽게임즈 대표는 애플과 구글의 인앱결제 강제 정책이 앱마켓에 입점한 앱 개발사들의 새로운 서비스 창출을 방해한다고 비판하며, 구체적인 사례로 현재 전 세계 여러 기업들이 앞다퉈 진출하고 있는 메타버스를 들었다.
+        <br>
+        스위니 대표는 이날 오전 서울 여의도 국회도서관에서 열린 ‘글로벌 앱 생태계 공정화를 위한 국회 세미나’에 연사로 참석해 “메타버스는 앞으로 수십년 동안 수십조달러의 가치를 낼 것이고 이 가능성은 모든 기업들에게 똑같이 열려 있다”라며 이렇게 말했다.
+        <br>
+        글로벌 인기 게임 ‘포트나이트’를 개발한 에픽게임즈는 에픽게임즈는 지난해 애플의 인앱결제 강제 정책에 반기를 들고 소송전까지 치른 바 있다. 지난 8월 31일 한국 국회에서 세계 최초로 인앱결제 강제 금지법(개정 전기통신사업법)이 통과되자 스위니 대표는 트위터를 통해 “나는 한국인이다!”라며 환호하기도 했다.
+    </p>
+</body>
+</html>

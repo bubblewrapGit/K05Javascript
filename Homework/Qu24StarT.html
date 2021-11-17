@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qu24StarT.html</title>
+
+    <script>
+        function printStar(num){
+            /*
+            매개변수로 전달된 값이 양의 정수이고 숫자인지 확인한다.
+            */
+            var cnum = parseInt(num);
+            if(cnum<1 || isNaN(cnum)){
+                alert("입력 오류 입니다.");
+                return;
+            }
+            // 반복횟수
+            var totalCnt = cnum * 2;
+            
+            // 입력받은 수가 5라면 9번 반복해야함으로 10미만까지 반복하면 된다.
+            for(var i=1; i<totalCnt; i++){
+                if(i<=cnum){
+                    // 변수 i가 cnum이 될때까지는 증가하면서 * 출력
+                    starCnt = i;
+                    console.log("반복횟수", starCnt);
+                }else{
+                    // cnum을 넘어가면 감소하면서 *출력
+                    starCnt = totalCnt - i;
+                    console.log("반복횟수 : ", starCnt);
+                }
+                //앞에서 계산한 starCnt만큼 *을 출력
+                while(starCnt>0){
+                    document.write("*");
+                    starCnt--;
+                }
+                document.write("<br>");
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>별문자 출력하기</h2>
+    정수를 입력하면 숫자만큼 *을 출력하고, 다시 줄어드는 형태로 제작한다.
+    <hr>
+    <script>
+        var starCnt = prompt("양의정수를 입력하세요.");
+        printStar(starCnt);
+    </script>
+</body>
+</html>

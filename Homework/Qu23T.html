@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qu23T.html</title>
+
+    <script>
+        function cal(){
+            // 문제를 class명을 통해 얻어온다.
+            var quArr = document.getElementsByClassName("question");
+            // 사용자가 입력한 정답을 class명을 통해 얻어온다.
+            var anArr = document.getElementsByClassName("answer");
+            // 정답 갯수를 카운트
+            var total = 0;
+            // 배열의 크기만큼 반복하면서 문제와 정답을 확인한다.
+
+            for(var i in quArr){
+                console.log(i + "번째");
+                console.log(quArr[i].innerHTML);
+            }
+            // 확장for문 테스트 (구현 안됨) => HTMLCollection, NodeList 차이
+            // for(var i in quArr){
+            //     console.log("문제 : ", quArr[i].innerHTML);
+            //     console.log("정답 : ", eval(quArr[i].innerHTML));
+
+            //     // Javascript에서 직접 계산한 정답
+            //     var calAnswer = eval(quArr[i].innerHTML);
+            //     // 사용자가 입력한 정답
+            //     var userAnswer = anArr[i].value;
+
+            //     if(calAnswer == userAnswer){
+            //         // 정답인 경우...
+            //         total++;
+            //     }else{
+            //         // 오답인 경우...
+                    
+            //     }
+            // }
+            // document.getElementById("score").innerHTML = "정답갯수 : " + total;
+            for(var i=0; i<quArr.length; i++){
+                // console.log("문제 : ", quArr[i].innerHTML);
+                // console.log("정답 : ", eval(quArr[i].innerHTML));
+                // Javascript에서 직접 계산한 정답
+                var calAnswer = eval(quArr[i].innerHTML);
+                // 사용자가 입력한 정답
+                var userAnswer = anArr[i].value;
+
+                if(calAnswer == userAnswer){
+                    // 정답인 경우...
+                    quArr[i].style.textDecoration = "none";
+                    total++;
+                }else{
+                    // 오답인 경우...문자 중간에 줄긋기
+                    quArr[i].style.textDecoration = "line-through";
+                    
+                }
+            }
+            document.getElementById("score").innerHTML = "정답갯수 : " + total;
+
+        }
+    </script>
+</head>
+<body>
+    <form>
+        <table>
+            <tr>
+                <td class="question">5*6</td>
+                <td><input type="text" class="answer" size="10" /></td>
+            </tr>
+            <tr>
+                <td class="question">7+5*3</td>
+                <td><input type="text" class="answer" size="10" /></td>
+            </tr>
+            <tr>
+                <td class="question">23*2</td>
+                <td><input type="text" class="answer" size="10" /></td>
+            </tr>
+            <tr>
+                <td class="question">35-7</td>
+                <td><input type="text" class="answer" size="10" /></td>
+            </tr>
+            <tr>
+                <td>
+                    <button type="button" onclick="cal();">
+                        채점
+                    </button>
+                </td>
+                <td>
+                    <span id="score">정답갯수:0</span>
+                </td>
+            </tr>
+        </table>
+    </form>
+
+</body>
+</html>

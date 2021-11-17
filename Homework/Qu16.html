@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qu16.html</title>
+</head>
+<body>
+    <style>button{margin-left: 10px;}</style>
+    <h2>자바스크립트란?<button name="btn1" onclick="fnBtn(1);">border</button><button name="btn2" onclick="fnBtn(2);">p</button></h2>
+    <hr>
+    <p id="myPara">자바스크립트는 웹 프로그래밍 언어로서 웹 페이지를 동적 변경시킬 수 있다.</p>
+    <p><span id="mySpan">C 언어</span>를 아는 사용자는 빠르게 학습할 수 있다.</p>
+    <p>이벤트 등 GUI 프로그래밍에 필요한 요소들이 있어 학습에 약간의 어려움이 있다.</p>
+
+    <script>
+        window.onload = function(){
+            var myPara = document.getElementById("myPara");
+            var mySpan = document.getElementById("mySpan");
+        }
+        function fnBtn(value){
+            switch (value) {
+                case 1:
+                    mySpan.style.border="2px dotted violet";
+                    break;
+                case 2:
+                    myPara.style.border="3px double gray";
+                    break;
+            
+            }
+        }
+    </script>
+</body>
+</html>

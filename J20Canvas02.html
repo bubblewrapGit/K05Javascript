@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J20Canvas02.html</title>
+    
+    <script>
+        window.onload = function(){
+            // 캔버스를 사용할 준비
+            var canvas = document.getElementById("canvas");
+            var ctx = canvas.getContext("2d");
+            
+            ctx.font = "돋움체"; // 텍스트의 폰트 설정 
+            ctx.fillStyle = "rgba(255, 0, 0, 1)"; // 빨간색으로 표현
+            
+            // 캔버스 중간의 기준선
+            ctx.strokeStyle="red";
+            ctx.moveTo(100, 20);
+            ctx.lineTo(100, 180);
+            ctx.stroke();
+            
+            // 그림자 표시를 위한 설정
+            ctx.shadowColor = "rgba(0, 255, 0, 0.5)";   // 녹색
+            ctx.shadowOffsetX = 3; // 그림자의 x축 좌표 
+            ctx.shadowOffsetY = 8; // 그림자의 y축 좌표
+            ctx.shadowBlur = 5; //블러(흐림)의 정도
+
+            // 텍스트의 시작부분이 기준점에 위치(우측정렬)
+            ctx.textAlign = "start";
+            ctx.fillText("HTML5_Start", 100, 50);
+
+            // 텍스트의 끝부분이 기준점에 위치(좌측정렬)
+            ctx.textAlign = "end";
+            ctx.fillText("HTML5_End", 100, 80);
+
+            // 텍스트의 가운데가 기준점에 위치
+            ctx.textAlign = "center";
+            ctx.fillText("HTML5_Center", 100, 120);
+
+            // start와 동일
+            ctx.textAlign = "left";
+            ctx.fillText("HTML5_Left", 100, 150);
+
+            // end와 동일
+            ctx.textAlign = "right";
+            ctx.fillText("HTML5_Right", 100, 180);
+
+        }
+    </script>
+</head>
+<body>
+    <h2>canvas 태그</h2>
+    <canvas id="canvas" style="border:1px solid red;" width="200" height="200">
+        <p>canvas가 지원되지 않는 브라우저 입니다.</p>
+    </canvas>
+</body>
+</html>

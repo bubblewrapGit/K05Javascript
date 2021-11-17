@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qu22T.html</title>
+
+    <script>
+        // 타이머로 사용할 전역변수 생성
+        var timerID = null; 
+
+        window.onload = function(){
+            var clock = document.getElementById("clock");
+            // 1초에 한번씩 지속적으로 nowTime()함수를 호출.
+            timerID = setInterval("nowTime(clock)", 1000);
+        }
+        function nowTime(clockObj){
+            // Date객체 생성
+            var date = new Date();
+            /*
+            toLocalTimeString() : Date객체를 통해 생성된 시간을 오후 00:00:00 형태의 포맷으로 반환
+            */
+            clockObj.innerHTML = date.toLocaleTimeString();
+        }
+        function ctrlClock(){
+            if(timerID == null){
+                /*
+                시간이 멈춘 상태라면 전역변수가 null인 상태임으로 이때는 다시 타이머 작동
+                */
+                timerID = setInterval("nowTime(clock)", 1000);
+            }else{
+                clearInterval(timerID);
+                timerID = null;
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>div태그에 시계 만들기</h2>
+    <p>시계를 클릭하면 멈추고, 다시 클릭하면 움직인다.</p>
+    <hr>
+    <div id="clock" onclick="ctrlClock();"
+        style="cursor:pointer; width: 200px; height:30px; line-height:30px;
+        text-align: center; background-color: blue; color:#fff;"></div>
+</body>
+</html>

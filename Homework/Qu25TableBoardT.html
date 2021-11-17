@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qu25TableBoardT.html</title>
+
+    <script>		
+        var subjectList = ["美 의회조사국 '한미, 대북정책 놓고 갈등 가능성'",
+            "文정부 타깃 고소득층·대기업 비과세감면 얼마나 줄까",
+            "서울 집값 고공행진에 가계대출 '풍선효과'도 커져",
+            "엔본부 첫 5·18세미나…'세계 민주 모델 재조명'"];
+        var nameList = ["연합뉴스", "민중의소리", "오마이뉴스", "스브스뉴스"];
+        var dateList = ["2017-05-20", "2017-05-22", "2017-05-24", "2017-05-26"];
+        var hitList = [100, 199, 999, 88];
+        //여기에 코드작성
+        window.onload = function(){
+            //innerHTML 속성을 이용하여 출력한다.
+            var table ="";
+            table +='<table border="1" cellspacing="0" cellpadding="3">';
+            table +='    <tr>';
+            table +='        <th>No</th>';
+            table +='        <th>제목</th>';
+            table +='        <th>작성자</th>';
+            table +='        <th>작성일</th>';
+            table +='        <th>조회수</th>';
+            table +='    </tr>';
+            for(var i=0; i<subjectList.length; i++){
+                table +='<tr>';
+                table +='    <td align="center">'+ (i+1) +'</td>';
+                table +='    <td>'+ subjectList[i] +'</td>';
+                table +='    <td align="center">'+ nameList[i] +'</td>';
+                table +='    <td align="center">'+ dateList[i] +'</td>';
+                table +='    <td align="center">'+ hitList[i] +'</td>';
+                table +='</tr>';
+            }
+            table +='</table>';
+            document.getElementById("boardList").innerHTML = table;
+        }
+        </script>        
+</head>
+<body>
+    <h3>오늘의 뉴스</h3>
+    <hr>
+    <span id="boardList"></span>
+    
+    <!-- <table border="1" cellspacing="0" cellpadding="3">
+        <tr>
+            <th>No</th>
+            <th>제목</th>
+            <th>작성자</th>
+            <th>작성일</th>
+            <th>조회수</th>
+        </tr>
+        <tr>
+            <td align="center">1</td>
+            <td>블라블라</td>
+            <td align="center">연합뉴스</td>
+            <td align="center">2000-00-00</td>
+            <td align="center">99</td>
+        </tr>
+    </table> -->
+</body>
+</html>

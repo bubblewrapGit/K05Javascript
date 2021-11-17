@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qu20T.html</title>
+
+    <script>
+        // 전역변수
+        var allWrap;
+        
+        // 반드시 문서의 로드가 끝난 이후 DOM을 얻어와야 한다.
+        // ★ 이유 : 인터프리터(위에서부터 읽어나가는) 방식이기 때문이다.
+        window.onload = function(){
+            allWrap = document.getElementById("AllWrap");
+        }
+        window.onfocus = function(){
+            allWrap.style.backgroundColor = "white";
+            // 창을 잡는 순간 포커스가 이동된다.
+            document.frm.user_id.focus();
+        }
+        window.onblur = function(){
+            allWrap.style.backgroundColor = "gray";
+        }
+    </script>
+</head>
+<body id="AllWrap">
+    <h2>포커스와 onblur, onfocus</h2>
+    <hr>
+    <p>
+        브라우저 바끝에 마우스를 클릭하면
+        window 객체에 blur 이벤트가 발생
+        하고 다시 마우스를 클릭하면
+        window 객체에 focus 이벤트가 발생
+        한다.
+    </p>
+    <form name="frm">
+        아이디 : <input type="text" name="user_id" size="20">
+    </form>
+</body>
+</html>

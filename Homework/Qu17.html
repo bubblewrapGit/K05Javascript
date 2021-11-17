@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qu17.html</title>
+</head>
+<body>
+    <style>#btn{margin-left: 10px;}</style>
+    <h2>다음 빈 곳에 숨은 단어?<button id="btn" onclick="fnBtn();">show/hide</button></h2>
+    <hr>
+    <ul>
+        <li>I (<span>love</span>) you.
+        <li>CSS is Cascading (<span>Style</span>) Sheet.
+        <li>응답하라 (<span>1988</span>).
+    </ul>    
+
+    <script>
+        var span = document.getElementsByTagName("span");
+        for(var i=0; i<span.length; i++){
+            span[i].style.visibility = "hidden";
+        }
+
+        function fnBtn(){
+            if(span[0].style.visibility == "hidden"){
+                for(var i=0; i<span.length; i++){
+                    span[i].style.visibility = "visible";
+                }
+            }else{
+                for(var i=0; i<span.length; i++){
+                    span[i].style.visibility = "hidden";
+                }
+            };
+        };
+    </script>
+</body>
+</html>

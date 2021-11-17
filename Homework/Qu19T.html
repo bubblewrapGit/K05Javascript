@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qu19T.html</title>
+
+    <script>
+        // 이미지 태그를 통해 DOM객체를 배열 형태로 얻어옴
+        var imgArr = document.getElementsByTagName("img");
+        // 형 상태의 이미지를 가져와서 우선순위(z-index)를 부여한다.
+        window.onload = function(){
+            for(var i=0; i<imgArr.length; i++){
+                // 우선순위는 순서대로 0, 1, 2, 3 으로 부여된다.
+                /*
+                1번카드 : 0
+                2번카드 : 1
+                3번카드 : 2
+                7번카드 : 3
+                */
+                imgArr[i].style.zIndex = i;
+            }
+        }
+        function shuffle(){
+            /*
+            1번카드 : 0 ▶ 0++ ▶ 1 ▶ 1%4 ▶ 1
+            2번카드 : 1 ▶ 1++ ▶ 2 ▶ 2%4 ▶ 2
+            3번카드 : 2 ▶ 2++ ▶ 3 ▶ 3%4 ▶ 3
+            7번카드 : 3 ▶ 3++ ▶ 4 ▶ 4%4 ▶ 0 => 제일 아래로 내려간다.
+            */
+            for(var i=0; i<imgArr.length; i++){
+                var obj = imgArr[i];
+                obj.style.zIndex ++;
+                obj.style.zIndex %= imgArr.length;
+            }
+        }
+    </script>
+</head>
+<body>
+    <style>
+        div { position : absolute; }
+        img { position : absolute; }
+        </style>
+        <div>
+            <!-- 
+                아래와 같이 이미지를 배치하면 모든 엘리먼트의 우선순위는 1이된다.
+             -->
+            <img src="../images/1.jpg" width="100" height="140" alt="하트A" onclick="shuffle();">
+            <img src="../images/2.jpg" width="100" height="140" alt="하트2" onclick="shuffle();">
+            <img src="../images/3.jpg" width="100" height="140" alt="하트3" onclick="shuffle();">
+            <img src="../images/7.jpg" width="100" height="140" alt="하트7" onclick="shuffle();">
+        </div>
+</body>
+</html>
