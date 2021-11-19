@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J20Canvas04.html</title>
+
+    <script>
+        // 전역변수
+        var canvas, context;
+        // 페이지의 로드가 끝난 직후에..
+        window.onload = function(){
+            // 캔버스에 그림을 그릴 준비.
+            canvas = document.getElementById("myCanvas");
+            context = canvas.getContext("2d");
+            // 선의 두께와 색깔 설정
+            context.lineWidth = document.getElementById("widthInput").value;
+            context.strokeStyle = document.getElementById("colorInput").value;
+
+            // 캔버스 위에서 마우스를 움직이면 지속적으로 발생하는 이벤트
+            canvas.addEventListener("mousemove", function(e){
+                // console.log("mousemove", e);
+                move(e);
+            });
+            canvas.addEventListener("mousedown", function(e){
+                console.log("mousedown", e);
+                down(e);
+            });
+            canvas.addEventListener("mouseup", function(e){
+                console.log("mouseup", e);
+                up(e);
+            });
+            // canvas.addEventListener("mouseleave", function(e){
+            canvas.addEventListener("mouseout", function(e){
+                console.log("mouseleave/out", e);
+                leave(e);
+            });
+            
+            var startX = 0, startY = 0; // 시작위치의 좌표값
+            dragging = false; // 라인 표시 여부(false일때 라인을 생성하지 않음)
+            var prevX = 0, prevY =0; //마우스의 마지막 포인터 좌표
+            
+            // 마우스 움직일떄
+            function move(e){ // 매개변수 e! 이벤트 리스너에서 전달한 이벤트 객체를 매개변수 e로 전달받음
+                var curX = e.offsetX; // 마우스의 현재 위치를 가져온다.
+                var curY = e.offsetY;
+            
+                // dragging이 false일때 해당코드 실행됨
+                /* 
+                    현재 좌표값을 마지막 좌표값에 대입하므로, 전화 후가 같은 상태가 되어
+                    라인이 생성되지 않게 된다.
+                */
+                if(!dragging){
+                    prevX = curX; prevY = curY;
+                }
+                context.beginPath();
+                context.moveTo(prevX, prevY); // 이전좌표에서
+                context.lineTo(curX, curY); // 현재좌표까지
+                context.stroke(); // 선을 그린다.
+                prevX = curX; prevY = curY; // 현재좌표를 이전의좌표로 대입.
+            }
+            
+            // 마우스 클릭시 라인을 생성할 수 있게 설정
+            function down(e){
+                startX = e.offsetX;
+                startY = e.offsetY;
+                dragging = true;
+            }
+
+            // 마우스 버튼을 땟을때 라인생성 안됨
+            function up(e){
+                dragging = false;
+                prevX = e.offsetX;
+                prevY = e.offsetY;
+            }
+
+            // 마우스가 캠버스를 벗어나면 라인 생성 안됨
+            function leave(e){
+                dragging = false;
+            }
+        }
+    </script>
+</head>
+<body>
+    <h3>캔버스로 구현한 그림판</h3>
+    <hr>
+    <!-- 
+        change이벤트는 select태그 뿐만 아니라 input태그에서 사용할 수 있다.
+        즉, 두께에 대한 변화나, 색깔에 대한 변화가 즉시 캔버스에 적용된다.
+     -->
+    선굵기 : <input type="number" id="widthInput" value="1" min="0" max="20" step="1" onchange="context.lineWidth=this.value">
+    선 색 : <input type="color" id="colorInput" value="#000000" onchange="context.strokeStyle=this.value">
+    <br>
+    <br>
+    <canvas id="myCanvas" style="background-color: aliceblue" width="500" height="400"></canvas>
+</body>
+</html>

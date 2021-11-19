@@ -18,22 +18,113 @@
         .btn_search:hover{background-color: #6d6d6d;}        
         .btn_submit{width:120px;height:28px;font-weight:bold;cursor:pointer;background-color: #E70E16;color:white;font-size: 14px;}
         .btn_cancel{width:120px;height:28px;font-weight:bold;cursor:pointer;background-color: #464646;color:white;font-size: 14px;}
-        .w20{width:20px;} .w30{width:30px;} .w40{width:40px;} .w50{width:50px;} .w100{width:100px;} 
+        .w20{width:40px;} .w30{width:60px;} .w40{width:60px;} .w50{width:50px;} .w100{width:100px;} 
         .w300{width:300px;} .w510{width:510px;} .w410{width:410px;} 
         #id_loading{position:absolute;top:530px;z-index:10;width:100%;text-align:center;display:block;}
         button:hover{cursor: pointer;}
     </style>
 
     <script>
-        var validate = function(myform){
-        // ID 유효성 검사    
-            var getId = myform.id.value;
-            console.log("getId : ", getId);
-            console.log("getId.length : ", getId.length);
+        window.onload = function(){
+            var frm = document.getElementsByName("myform")[0];
 
+            // 생년월일 생성
+            var getBirth1 = document.getElementsByTagName("select")[0];
+            var getBirth2 = document.getElementsByTagName("select")[1];
+            var getBirth3 = document.getElementsByTagName("select")[2];
+
+            
+            for(var i=2021; i>=2000; i--){
+                getBirth1.innerHTML += "<option value='" + i +"'>" + i + "</option>";
+            } 
+            for(var i=1; i<=12; i++){
+                getBirth2.innerHTML += "<option value='" + i +"'>" + i + "</option>";
+            } 
+            for(var i=1; i<=31; i++){
+                getBirth3.innerHTML += "<option value='" + i +"'>" + i + "</option>";
+            } 
+
+            // 번호 앞3자리 생성
+            var phone1 = document.getElementsByName("phone1")[0];
+            var hphone1 = document.getElementsByName("hphone1")[0];
+
+            phone1.innerHTML = ""
+            + "<option value='0" + 31 +"'>0" + 31 + "</option>"
+            + "<option value='0" + 33 +"'>0" + 33 + "</option>"
+            + "<option value='0" + 41 +"'>0" + 41 + "</option>"
+            + "<option value='0" + 43 +"'>0" + 43 + "</option>"
+            + "<option value='0" + 54 +"'>0" + 54 + "</option>"
+            + "<option value='0" + 55 +"'>0" + 55 + "</option>"
+            + "<option value='0" + 61 +"'>0" + 61 + "</option>"
+            + "<option value='0" + 63 +"'>0" + 63 + "</option>";
+
+            for(var i=10; i<=19; i++){
+                hphone1.innerHTML += "<option value='0" + i +"'>0" + i + "</option>";
+            }
+
+            var tellStart1 = document.getElementsByTagName("select")[4];
+            var tellStart2 = document.getElementsByTagName("select")[5];
+            tellStart1.addEventListener("change", function(){
+                this.nextSibling.nextSibling.focus();
+            });
+
+            tellStart1.nextSibling.nextSibling.addEventListener("keyup", function(){
+                if(this.value.length >= 4){
+                    this.nextSibling.nextSibling.focus();
+                }
+            });
+
+            tellStart1.nextSibling.nextSibling.nextSibling.nextSibling.addEventListener("keyup", function(){
+                if(this.value.length >= 4){
+                    tellStart2.focus();
+                }
+            });
+
+            tellStart2.addEventListener("change", function(){
+                this.nextSibling.nextSibling.focus();
+            });
+
+            tellStart2.nextSibling.nextSibling.addEventListener("keyup", function(){
+                if(this.value.length >= 4){
+                    this.nextSibling.nextSibling.focus();
+                }
+            });
+
+            tellStart2.nextSibling.nextSibling.nextSibling.nextSibling.addEventListener("keyup", function(){
+                if(this.value.length >= 4){
+                    var etc_no1 = document.getElementsByName("etc_no1")[0];
+                    etc_no1.focus();
+                }
+            });
+        };
+        
+        // 이메일 선택
+        function domainSelect(key){
+            var email2 = document.getElementsByName("email2")[0];
+            
+            if(key.options[key.selectedIndex].value == "직접입력"){
+                email2.focus();
+                email2.value ="";
+                email2.readOnly = false;
+                email2.style.backgroundColor="#fff";
+            }else{
+                email2.value = key.options[key.selectedIndex].value;
+                email2.style.backgroundColor="rgba(0,0,0,0.1)";
+                email2.readOnly = true;
+            }
+        }
+
+        // ID 중복 체크
+        function doubleCheckId(frm){
+            alert("입력한 아이디 뾰로롱 : " + frm.id.value);
+        }
+
+        // 유효성 검사
+        var validate = function(myform){
+            // ID 유효성 검사    
+            var getId = myform.id.value;
             var checkid = function(){
                 for(var i=0; i<getId.length; i++){
-                    console.log("getId[i] : ", getId[i], getId[i].charCodeAt(i) );
                     if(!(
                             (getId.charCodeAt(i) >= 48 && getId.charCodeAt(i) <= 57) ||
                             (getId.charCodeAt(i) >= 65 && getId.charCodeAt(i) <= 90) ||
@@ -58,86 +149,56 @@
                 return false;
             };
 
-        // PW 유효성 검사
-            var getPw1 = myform.pass1.value;
-            var getPw2 = myform.pass2.value;
-           if(!(getPw1 == getPw2)){
-               alert("비밀번호가 서로 다릅니다.");
-           }
+            // PW 유효성 검사
+            var getPw1 = myform.pass1;
+            var getPw2 = myform.pass2;
+            if(getPw1.value ==""){
+                alert("비밀번호를 입력하세요.");
+                getPw1.focus();
+                return false;
+            }
             
-        // 이름 유효성 검사
-           // pass
-        
-        
+            if(getPw2.value ==""){
+                alert("비밀번호 확인을 입력하세요.");
+                getPw2.focus();
+                return false;
+            }
 
+           if(getPw1.value != getPw2.value){
+               alert("비밀번호가 서로 다릅니다.");
+               getPw2.focus();
+               return false;
+           }
+           
+           //이름 유효성 검사
+           if(myform.name.value == ""){
+               alert("이름을 입력하세요.");
+                myform.name.focus();
+                return false;
+           }
+            document.getElementById("id_loading").style.display = "block";
             return false; // 최종 후 삭제
         }
+    </script>
 
-            window.onload = function(){
-                // 생년월일 생성
-                var getBirth1 = document.getElementsByTagName("select")[0];
-                var getBirth2 = document.getElementsByTagName("select")[1];
-                var getBirth3 = document.getElementsByTagName("select")[2];
-
-                for(var i=2021; i>=2000; i--){
-                    getBirth1.innerHTML += "<option value='" + i +"'>" + i + "</option>";
-                } 
-                for(var i=1; i<=12; i++){
-                    getBirth2.innerHTML += "<option value='" + i +"'>" + i + "</option>";
-                } 
-                for(var i=1; i<=31; i++){
-                    getBirth3.innerHTML += "<option value='" + i +"'>" + i + "</option>";
-                } 
-
-                // 국번 생성
-                var phone1 = document.getElementsByName("phone1")[0];
-                var hphone1 = document.getElementsByName("hphone1")[0];
-
-                phone1.innerHTML = ""
-                + "<option value='0" + i +"'>0" + 31 + "</option>"
-                + "<option value='0" + i +"'>0" + 33 + "</option>"
-                + "<option value='0" + i +"'>0" + 41 + "</option>"
-                + "<option value='0" + i +"'>0" + 43 + "</option>"
-                + "<option value='0" + i +"'>0" + 54 + "</option>"
-                + "<option value='0" + i +"'>0" + 55 + "</option>"
-                + "<option value='0" + i +"'>0" + 61 + "</option>"
-                + "<option value='0" + i +"'>0" + 63 + "</option>";
-
-                for(var i=10; i<=19; i++){
-                    hphone1.innerHTML += "<option value='0" + i +"'>0" + i + "</option>";
-                } 
-            }
-            
-            // 이메일 선택
-            function domainSelect(key){
-                var email2 = document.getElementsByName("email2")[0];
-                
-                if(key.options[key.selectedIndex].value == "직접입력"){
-                    email2.focus();
-                    email2.value ="";
-                    email2.readOnly = false;
-                    email2.style.backgroundColor="#fff";
-                }else{
-                    email2.value = key.options[key.selectedIndex].value;
-                    email2.style.backgroundColor="rgba(0,0,0,0.1)";
-                    email2.readOnly = true;
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script>
+        function addressFind(){
+            new daum.Postcode({
+                oncomplete: function(data) {
+                    // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
+                    // 예제를 참고하여 다양한 활용법을 확인해 보세요.
+                    var frm = document.myform;
+                    // zipcode  addr1  addr2
+                    frm.zipcode.value = data.zonecode;
+                    frm.addr1.value = data.address;
+                    frm.addr2.focus();
                 }
-            }
-        
-        
-
-
-        function doubleCheckId(myform){
-            console.log(myform.id);
-
-        }
-        
-        
-
+            }).open();
+        };
     </script>
 </head>
 <body>
-    <!-- <form name="myform" action="./join_write_end1stp.php" method="POST" onsubmit="return validate(this);"> -->
     <form name="myform" action="#" method="#" onsubmit="return validate(this);">
         <table class="userTable">
             <colgroup>
@@ -147,8 +208,7 @@
             <tr>
                 <td class="userTit"><span class="c_imp">*</span> 아이디</td>
                 <td class="userVal">
-                    <!-- id value고정값 맨 마지막 삭제 -->
-                    <input type="text" name="id" value="abcd1234" maxlength="15" class="userInput"
+                    <input type="text" name="id" value="" maxlength="15" class="userInput"
                         style="width:120px;" />                    
                     <button type="button" class="btn_search" onclick="doubleCheckId(this.form);">중복확인</button>
                     <span style="margin-left:10px;"></span>
@@ -226,7 +286,7 @@
             <tr>
                 <td class="userTit" rowspan="3"><span style="margin-left:10px;"></span> 주소</td>
                 <td class="userVal">
-                    <button type="button" class="btn_search" onClick="">주소찾기</button>
+                    <button type="button" class="btn_search" onClick="addressFind();">주소찾기</button>
                     <input type="text" name="zipcode" maxlength="10" value="" class="userInput w50" /> (우편번호)
                 </td>
             </tr>
@@ -304,9 +364,9 @@
                 </td>
             </tr>
         </table>
-        <!-- <div id="id_loading">
+        <div id="id_loading" style="display: none;">
             <img src="./images/loading.gif" style="width:40%;" />
-        </div> -->
+        </div>
     </form>
 </body>
 </html>

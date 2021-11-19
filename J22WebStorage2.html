@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J22WebStorage2.html</title>
+
+    <script>
+        // 로컬스토리지를 사용하기 위한 전역변수 선언
+        var key,val, result;
+        window.onload = function(){
+            // 문서의 로드가 끝난 후 DOM객체를 얻어옴
+            key = document.getElementById("key");
+            val = document.getElementById("val");
+            result = document.getElementById("result");
+        }
+        // 로컬스토리지에 값 저장
+        var save = function(){
+            // 입력값이 빈값인지 확인
+            if(key.value == ""){
+                alert("키를 입력하세요."); key.focus(); return; // 만약 빈값이라면 함수 종료
+            }
+            if(val.value == ""){
+                alert("값를 입력하세요."); val.focus(); return;
+            }
+            // 입력값이 있다면 로컬스토리지에 값 저장 : setItem(key, value)
+            localStorage.setItem(key.value, val.value);
+            alert("로컬 스토리지에 저장됨");
+            key.value = ""; // 다음 값의 입력을 위해 기존에 입력된 값을 지운다.
+            val.value = "";
+            key.focus(); // 포커스 이동
+        }
+        // Key값을 통한 조회
+        var selectOne = function(){
+            if(key.value == ""){
+                alert("조회할 키를 입력하세요");
+                key.focus(); return;
+            }
+            // 로컬 스토리지에 값 읽어오기 : getItem(key)
+            var sValue = localStorage.getItem(key.value);
+            alert("'" + key.value + "'로 조회한 결과 : " + sValue);
+        }
+        // 스토리지에 저장된 모든 값을 읽어오기
+        /*
+            localStorage.length : 스토리지에 저장된 아이템의 갯수 
+            localStorage.key(index) : 인자로 주어진 index에 해당하는 key를 가져옴.
+        */
+        var selectAll = function(){
+            result.value = "";
+            for(var i=0; i<localStorage.length; i++){
+                // key(index)를 통해 얻어온 key를 통해 value를 얻어옴
+                result.value += localStorage.key(i) +":"
+                    +localStorage.getItem(localStorage.key(i))
+                    +"\r\n";
+                    /*
+                        <textarea> 태그에서 줄밖무을 위해 Enter키를 누르면 내부적으로
+                        \r\n으로 저장된다. 이부분을 웹브라우저에 출력할때는 <br>태그로
+                        줄바꿈 처리해야 한다.
+                    */
+            }
+        }
+        // key를 통해 하나만 삭제한다.
+        var removeOne = function(){
+            if(key.value == ""){
+                alert("키를 입력하신후 삭제해주세요.");
+                key.focus(); return;
+            }
+            // key를 통해 하느이 아이템 삭제 : removeItem(key)
+            localStorage.removeItem(key.value);
+            alert("해당 키가 삭제되었습니다.");
+        }
+        // 스토리지에 저장된 모든 item을 삭제한다.
+        var removeAll = function(){
+            localStorage.clear();
+            alert("웹스토리지에 저장된 모든 데이터가"
+                +"삭제되었습니다");
+        }
+    </script>
+</head>
+<body>
+    <h2>웹스토리지 - 저장/조회/삭제</h2>
+    <table border="1">
+        <tr>
+            <td style="width: 15%;">키(Key)</td>
+            <td>
+                <input type="text" id="key">
+            </td>
+        </tr>
+        <tr>
+            <td>값(Value)</td>
+            <td>
+                <input type="text" id="val">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align: center;">
+                <input type="button" value="저장하기" onclick="save();">   
+                <input type="button" value="하나 삭제" onclick="removeOne();">   
+                <input type="button" value="모두 삭제" onclick="removeAll();">   
+                <input type="button" value="키로 조회" onclick="selectOne();">   
+                <input type="button" value="모두 조회" onclick="selectAll();">   
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <textarea id="result" style="width:100%; height:200px;"></textarea>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

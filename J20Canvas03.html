@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>J20Canvas03.html</title>
+
+    <script>
+        window.onload = function(){
+            var canvas = document.getElementById("canvas1");
+            var c = canvas.getContext("2d");
+
+            c.beginPath();
+            c.strokeStyle = "#0000ff";
+            c.moveTo(10, 10);
+            c.lineTo(120, 166);
+            c.lineTo(180, 76);
+            c.lineTo(240, 250);
+            c.lineTo(300, 70);
+            c.lineTo(360, 200);
+            c.lineTo(420, 120);
+            c.lineTo(490, 390);
+            c.stroke();
+            c.closePath();
+
+            var canvas2 = document.getElementById("canvas2");
+            var cx = canvas2.getContext("2d");
+
+            /*
+            삼각형 그리기
+            */
+            cx.beginPath();
+            cx.moveTo(120, 20); // 출발점
+            cx.lineTo(20, 60);
+            cx.lineTo(150, 120);
+            cx.lineTo(120, 20); // 마지막에 출발점으로 다시 돌아감
+            cx.strokeStyle = "magenta";
+            cx.stroke();
+
+            /*
+            원호그리기
+            arc(x, y, 반지름, 시작각도, 끝각도, 원호를 그릴 방향)
+            - 각도관련
+                우측점(3시) : 0도(2*Math.PI)
+                하단점(6시) : 90도(0.5*Math.PI)
+                좌측점(9시) : 180도(1*Math.PI)
+                상단점(12시) : 270도(1.5*Math.PI)
+            - 방향관련
+                false : 시계방향
+                true : 반시계방향
+            */
+            cx.beginPath();
+            cx.arc(300, 70, 30, 0, 360, false); //0~360이므로 원을 표현, 시계방향
+            cx.strokeStyle = "blue"; // 라인 컬러
+            cx.stroke();
+            cx.fillStyle = "yellow"; // 채우기 컳러
+            cx.fill();
+
+            // 녹색 원호
+            cx.beginPath();
+            cx.arc(300, 70, 50, Math.PI / 2, Math.PI, true);
+            cx.strokeStyle = "green";
+            cx.stroke();
+
+            /*
+            사각형 그리기
+            rect(x, y, 가로길이, 세로길이)
+            */
+            cx.beginPath();
+            for(var i=0; i<5; i++) {
+                // 같은 크기의 사각형 5개를 출력함.
+                cx.rect(100 + (i*30), 150+(i*20), 150, 50);
+            }
+            cx.lineWidth = 5; // 두께
+            cx.strokeStyle = "red"; // 선의 컬러
+            cx.stroke();
+        }
+    </script>
+</head>
+<body>
+    <h2>그래프 그리기</h2>
+    <canvas id="canvas1" style="border:1px solid red;" width="500" height="400">
+        <p>canvas가 지원되지 않는 브라우저입니다.</p>
+    </canvas>
+    <h2>삼각형, 사각형, 원 그리기</h2>
+    <canvas id="canvas2" style="border:1px solid blue;" width="500" height="400">
+        <p>canvas가 지원되지 않는 브라우저입니다.</p>
+    </canvas>
+</body>
+</html>
