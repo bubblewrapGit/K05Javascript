@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UpDownGame.html</title>
+
+    <style>
+        h2{font-size: 2em;}
+        .countWrap{font-size: 1.5em; font-weight: bold;}
+        .count{font-size: 3em;}
+        .userWrap{font-size: 1.5em;  display: flex;} 
+        .user{width: 100px; margin-left: 10px;}
+        button{margin-left: 10px;}
+        button:nth-of-type(2){display: none;}
+    </style>
+
+    <script>
+        // 시도 횟수 변수
+        var count = 1;
+        
+        // 랜덤 난수 생성 & 이벤트리스너
+        window.onload = function(){
+            var ranNum = parseInt(Math.random()*100)+1;
+            console.log("정답은 : " + ranNum);
+            document.frm.user.focus();
+            
+            // 버튼 클릭 시
+            document.frm.userCheck.addEventListener("click", function(){
+                if(count <= 7){
+                    checking(ranNum);
+                }else{
+                    alert("시도횟수가 초과되었습니다. 게임을 재시작 합니다. 정답은 : " + ranNum);
+                    location.reload();
+                }
+            });
+
+            // enter키 입력 시
+            document.frm.user.addEventListener("keyup", function(){
+                if(window.event.keyCode == 13){
+                    if(count <= 7){
+                        checking(ranNum);
+                    }else{
+                        alert("시도횟수가 초과되었습니다. 게임을 재시작 합니다. 정답은 : " + ranNum);
+                        location.reload();
+                    }
+                }
+            });
+        }
+        
+        // 검증
+        function checking(ranNum){
+            var ranNum = ranNum;
+            var frm = document.frm;
+            var userNum = frm.user.value;
+            var imgArea = document.getElementsByClassName("imgArea")[0];
+            var countOutput = document.getElementsByClassName("count")[0];
+            while(1){
+                for(var i=0; i<=6; i++){
+                    if(userNum >= 1 && userNum <= 100){
+                        countOutput.innerHTML = count;
+                        count++;
+                        console.log(count);
+                        if(userNum == ranNum){
+                            console.log("정답입니다.");
+                            imgArea.src = "./images/answer.jpeg";
+                            document.frm.userReload.style.display = "block";
+                            document.frm.userReload.focus();
+                            break;
+                        }else if(userNum > ranNum){
+                            console.log("보다 더 작습니다.");
+                            document.frm.user.focus();
+                            imgArea.src = "./images/down.jpg";
+                            break;
+                        }else if(userNum < ranNum){
+                            console.log("보다 더 큽니다.");
+                            document.frm.user.focus();
+                            imgArea.src = "./images/up.jpg";
+                            break;
+                        }else{
+                            console.log("넌 또 뭐니");
+                        }
+                    }else if(userNum <= 0 || userNum > 100){
+                        alert("1~100 사이의 정수를 입력해주세요.");
+                        document.frm.user.focus();
+                        break;
+                    }else{
+                        alert("1~100까지의 숫자만 입력해주세요.");
+                        document.frm.user.focus();
+                        break;
+                    }
+                }
+                break;
+            }
+        }
+    </script>
+        
+</head>
+<body>
+    <h2>업다운게임</h2>
+    <hr>
+    <h3>1~100사이의 숫자를 입력하세요</h3>
+    <hr>
+    <hr>
+    <p class="countWrap">시도횟수 : <span class="count">0</span>회</p>
+    <form name="frm" onsubmit="return false;">
+        <p class="userWrap">숫자입력 : 
+            <input type="text" class="user" name="user" value="" >
+            <button type="button" class="userCheck" name="userCheck">확인</button>
+            <button type="button" class="userReload" name="userReload" onclick="location.reload();">새로고침</button>
+        </p>
+    </form>
+    <div><img class="imgArea" src="./images/updowngame.jpg" alt="#"></div>
+</body>
+</html>
